@@ -21,12 +21,26 @@ router.post('/', function (req, res) {
         nick: credentials.nick
     }
     /*Params (object, collection)*/
-    mongodbHelper.insert(object, "user").then(function (success) {
+    mongodbHelper.insertOne(object, "user").then(function (success) {
         responseHelper.respond(res, 200, "Inserted Correctly", success);
     }).catch(function (error) {
         responseHelper.respond(res, 500, error);
     });
 
+});
+router.get('/', function (req, res) {
+    mongodbHelper.find({}, "user").then(function (success) {
+        responseHelper.respond(res, 200, undefined, success);
+    }).catch(function (error) {
+        responseHelper.respond(res, 500, error);
+    });
+});
+router.put('/', function (req, res) {
+    mongodbHelper.updateOne({ nick: "ah" }, { nick: "ahh" }, "user").then(function (success) {
+        responseHelper.respond(res, 200, undefined, success);
+    }).catch(function (error) {
+        responseHelper.respond(res, 500, error);
+    });
 });
 
 
