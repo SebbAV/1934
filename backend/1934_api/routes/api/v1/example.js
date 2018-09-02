@@ -21,7 +21,7 @@ router.post('/', function (req, res) {
         nick: credentials.nick
     }
     /*Params (object, collection)*/
-    mongodbHelper.insert(object, "user").then(function (success) {
+    mongodbHelper.insertOne(object, "user").then(function (success) {
         responseHelper.respond(res, 200, "Inserted Correctly", success);
     }).catch(function (error) {
         responseHelper.respond(res, 500, error);
