@@ -10,10 +10,10 @@ module.exports =
     {
         sendMail: function (email, code) {
             var mailOptions = {
-                from: 'jose.mvp55@gmail.com',
+                from: '1934.aigame@gmail.com',
                 to: email,
                 subject: 'New Password assigned',
-                text: "new password: " + code
+                text: "code: " + code
             };
             return new Promise((resolve, reject) => {
                 transporter.sendMail(mailOptions, function (error, info) {
