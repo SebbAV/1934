@@ -1,0 +1,148 @@
+var express = require('express');
+var crypto = require('crypto');
+var router = express.Router();
+var responseHelper = require('../../../helpers/response.helper');
+var mongodbHelper = require('../../../helpers/mongodb.helper');
+var forgotHelper = require('../../../helpers/forgot.helper');
+var generator = require('generate-password');
+//Get all users
+router.get('/', function (req, res) {
+    mongodbHelper.find({}, "user").then(function (success) {
+        responseHelper.respond(res, 200, undefined, success);
+    }).catch(function (error) {
+        responseHelper.respond(res, 500, error);
+    });
+});
+//Create User
+router.post('/', function (req, res) {
+    var credentials = req.body;
+    if (!credentials.email || !credentials.password || !credentials.nick) {
+        responseHelper.respond(res, 400, 'Bad request. The request was missing some parameters.');
+        return;
+    }
+    var sha1HashedPassword = crypto.createHash('sha1').update(credentials.password).digest('hex');
+    var object =
+    {
+        email: credentials.email,
+        password: sha1HashedPassword,
+        nick: credentials.nick
+    }
+    var registeredObject = {
+        $or: [
+            { email: credentials.email },
+            { nick: credentials.nick }
+        ]
+    }
+    mongodbHelper.findOne(registeredObject, "user").then(function (success) {
+        if (!success) {
+            mongodbHelper.insertOne(object, "user").then(function (success) {
+                responseHelper.respond(res, 200, "Inserted Correctly", success);
+            }).catch(function (error) {
+                responseHelper.respond(res, 500, error);
+            });
+        } else {
+            responseHelper.respond(res, 200, "User already registered.", null);
+        }
+
+    }).catch(function (error) {
+        responseHelper.respond(res, 500, error);
+    });
+
+
+});
+router.post('/login', function (req, res) {
+    var credentials = req.body;
+    if (!credentials.email || !credentials.password) {
+        responseHelper.respond(res, 400, 'Bad request. The request was missing some parameters.');
+        return;
+    }
+    var sha1HashedPassword = crypto.createHash('sha1').update(credentials.password).digest('hex');
+    var object =
+    {
+        $and: [
+            { email: credentials.email },
+            { password: sha1HashedPassword }]
+    }
+    mongodbHelper.findOne(object, "user").then(function (success) {
+        responseHelper.respond(res, 200, undefined, success);
+    }).catch(function (error) {
+        responseHelper.respond(res, 500, error);
+    });
+
+});
+router.post('/forgot', function (req, res) {
+    var emailObject = req.body;
+    if (!emailObject.email) {
+        responseHelper.respond(res, 400, 'Bad request. The request was missing some parameters.');
+        return;
+    }
+    var code = generator.generate({
+        length: 5,
+        numbers: true
+    });
+    var object =
+    {
+        email: emailObject.email,
+        code: code
+    }
+    mongodbHelper.insertOne(object, "code").then(function (success) {
+        forgotHelper.sendMail(emailObject.email, code).then(function (success) {
+            responseHelper.respond(res, 200, undefined, success);
+        }).catch(function (error) {
+            responseHelper.respond(res, 500, error);
+        });
+    }).catch(function (error) {
+        responseHelper.respond(res, 500, error);
+    });
+
+
+});
+router.put('/password_reset', function (req, res) {
+    var user = req.body;
+    if (!user.email || !user.password) {
+        responseHelper.respond(res, 400, 'Bad request. The request was missing some parameters.');
+        return;
+    }
+    var sha1HashedPassword = crypto.createHash('sha1').update(user.password).digest('hex');
+    var object =
+    {
+        email: user.email
+    };
+    var newPassword =
+    {
+        password: sha1HashedPassword
+    }
+    
+    mongodbHelper.findOne(object, "user").then(function (success) {
+        if (!success) {
+            responseHelper.respond(res, 400, "User don't exist.");
+        }
+        else {
+            mongodbHelper.updateOne(object, newPassword, "user").then(function (success_two) {
+                responseHelper.respond(res, 200, "Password modified.", success_two)
+            }).catch(function (error) {
+                responseHelper.respond(res, 500, error);
+            });
+        }
+    }).catch(function (error) {
+        responseHelper.respond(res, 500, error);
+    });
+
+});
+router.get('/check_code/:code', function (req, res) {
+    var code = req.params.code;
+    if (!code) {
+        responseHelper.respond(res, 400, 'Bad request. The request was missing some parameters.');
+        return;
+    }
+    var object =
+    {
+        code: code
+    }
+    mongodbHelper.findOne(object, "code").then(function (success) {
+        responseHelper.respond(res, 200, undefined, success);
+    }).catch(function (error) {
+        responseHelper.respond(res, 500, error);
+    });
+});
+module.exports = router;
