@@ -14,7 +14,6 @@ function getUrl() {
 function getDB() {
     return config.databases.development.database;
 }
-
 module.exports = {
     insertOne: function (object, collection) {
         return new Promise((resolve, reject) => {

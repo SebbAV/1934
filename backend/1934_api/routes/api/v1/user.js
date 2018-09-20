@@ -5,6 +5,14 @@ var responseHelper = require('../../../helpers/response.helper');
 var mongodbHelper = require('../../../helpers/mongodb.helper');
 var forgotHelper = require('../../../helpers/forgot.helper');
 var generator = require('generate-password');
+//Get all users
+router.get('/', function (req, res) {
+    mongodbHelper.find({}, "user").then(function (success) {
+        responseHelper.respond(res, 200, undefined, success);
+    }).catch(function (error) {
+        responseHelper.respond(res, 500, error);
+    });
+});
 //Create User
 router.post('/', function (req, res) {
     var credentials = req.body;

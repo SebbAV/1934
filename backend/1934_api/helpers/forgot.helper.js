@@ -12,7 +12,7 @@ module.exports =
             var mailOptions = {
                 from: '1934.aigame@gmail.com',
                 to: email,
-                subject: 'New Password assigned',
+                subject: 'Renew Password 1934',
                 text: "code: " + code
             };
             return new Promise((resolve, reject) => {
