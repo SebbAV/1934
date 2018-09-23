@@ -10,6 +10,7 @@ var logger = require('morgan');
 //this is the way to customize the route
 var exampleRoute = require('./routes/api/v1/example');
 var userRoute = require('./routes/api/v1/user');
+var matchRoute = require('./routes/api/v1/match');
 
 var app = express();
 
@@ -24,8 +25,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 //here we can link our custom route to the project
-app.use('/', exampleRoute);
-app.use('/user', userRoute);
+app.use('/v1/', exampleRoute);
+app.use('/v1/user', userRoute);
+app.use('/v1/match', matchRoute);
 
 
 
