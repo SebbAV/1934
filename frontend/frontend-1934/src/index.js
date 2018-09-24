@@ -8,6 +8,7 @@ import promise from 'redux-promise';
 import Login from './components/login';
 import Register from './components/register';
 import ForgotPassword from './components/forgotPassword';
+import CodePassword from './components/codePassword';
 import reducers from './reducers';
 
 const createStoreWithMiddleware = applyMiddleware()(createStore);
@@ -19,6 +20,7 @@ ReactDOM.render(
         <Switch>
           <Route path="/register" component={Register} />
           <Route path="/forgot_password" component={ForgotPassword} />
+          <Route path="/verifyCode" component={CodePassword}/>
           <Route path="/" component={Login} />
         </Switch>
       </div>
