@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form'
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import {loginUser} from '../actions/index';
 
 
 class Login extends Component {
@@ -32,17 +33,23 @@ class Login extends Component {
     signUp(){
         this.props.history.push('');
     }
+    onSubmit(values){
+        this.props.loginUser(values,() =>{
+            this.props.history.push('/');
+        })
+    }
     render() {
+        const {handleSubmit} = this.props
         return (
             <div>
-                <form>
+                <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
                     <Field
                         label="Username"
-                        name="Username"
+                        name="email"
                         component={this.renderField} />
                     <Field
                         label="Password"
-                        name="Password"
+                        name="password"
                         component={this.passwordfield} />
                     <button type="submit" className="btn btn-primary"> Login </button>
                 </form>
@@ -62,4 +69,4 @@ function validate(values) {
 export default reduxForm({
     validate,
     form: "LoginForm"
-})(Login);
+})(connect(null,{loginUser})(Login));

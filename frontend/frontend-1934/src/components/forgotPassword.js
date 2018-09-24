@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form'
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import {forgotPassword} from '../actions/index';
 
 
 class ForgotPassword extends Component {
@@ -20,10 +21,16 @@ class ForgotPassword extends Component {
     signUp(){
         this.props.history.push('');
     }
+    onSubmit(values){
+        this.props.forgotPassword(values,() =>{
+            this.props.history.push('/verifyCode');
+        })
+    }
     render() {
+        const {handleSubmit} = this.props
         return (
             <div>
-                <form>
+                <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
                     <Field
                         label="email"
                         name="email"
@@ -45,4 +52,4 @@ function validate(values) {
 export default reduxForm({
     validate,
     form: "ForgotPasswordForm"
-})(ForgotPassword);
+})(connect(null,{forgotPassword})(ForgotPassword));

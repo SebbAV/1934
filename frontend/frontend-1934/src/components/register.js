@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form'
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import {registerUser} from '../actions/index';
 
 
 class Register extends Component {
@@ -29,12 +30,18 @@ class Register extends Component {
             </div>
         )
     }
+    onSubmit(values){
+        this.props.registerUser(values,() =>{
+            this.props.history.push('/');
+        })
+    }
     render() {
+        const {handleSubmit} = this.props
         return (
-            <form>
+            <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
                 <Field
                     label="Username"
-                    name="username"
+                    name="nick"
                     component={this.renderField} />
                 <Field
                     label="email"
@@ -65,4 +72,4 @@ function validate(values) {
 export default reduxForm({
     validate,
     form: "RegisterForm"
-})(Register);
+})(connect(null,{registerUser})(Register));
