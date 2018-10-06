@@ -30,14 +30,16 @@ class ForgotPassword extends Component {
         const {handleSubmit} = this.props
         return (
             <div>
-                <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+                <form className="form-page" onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+                    <p align="right"><Link to="/" className="btn btn-default btn-xs">Close</Link></p>
                     <Field
                         label="email"
                         name="email"
                         component={this.renderField} />
-                    <button type="submit" className="btn btn-primary"> Send Recovery e-mail </button>
+                    <button type="submit" className="btn_N"> Send Recovery e-mail </button><br/>
+                    
                 </form>
-                <Link to="/" className="btn btn-danger">Cancel</Link>
+                
             </div>
         )
     }

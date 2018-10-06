@@ -38,7 +38,8 @@ class Register extends Component {
     render() {
         const {handleSubmit} = this.props
         return (
-            <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+            <form className="form-page" onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+                <p align="right"><Link to="/" className="btn btn-default btn-xs">Close</Link></p>
                 <Field
                     label="Username"
                     name="nick"
@@ -55,8 +56,7 @@ class Register extends Component {
                     label="Confirm password"
                     name="pwd-confirm"
                     component={this.passwordfield} />
-                <button type="submit" className="btn btn-primary"> Sign up </button>
-                <Link to="/" className="btn btn-danger">Cancel</Link>
+                <button type="submit" className="btn_N"> Sign up </button>
 
             </form>
         )

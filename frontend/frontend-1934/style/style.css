@@ -1,0 +1,81 @@
+  .form-page {
+    width: 360px;
+    padding: 1% 0 0;
+    margin: auto;
+  }
+  .form {
+    position: relative;
+    z-index: 1;
+    background:null;
+    max-width: 360px;
+    margin: 0 auto 100px;
+    padding: 60px;
+    text-align: center; 
+  }
+  .form-control {
+    font-family: "Roboto", sans-serif;
+    outline: 0;
+    background: #f2f2f2;
+    width: 100%;
+    border: 0;
+    margin: 0 0 15px;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+  }
+  .container {
+    position: relative;
+    z-index: 1;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+  .btn_N {
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    outline: 0;
+    background: #282c34;
+    width: 100%;
+    border: 0;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 14px;
+    -webkit-transition: all 0.3 ease;
+    transition: all 0.3 ease;
+    cursor: pointer;
+  }
+  .btn_N:hover,.btn_N:active,.btn_N:focus {
+    background: #656e80;
+  }
+  .btn_R {
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    outline: 0;
+    background: #3b0c0a;
+    width: 100%;
+    border: 0;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 14px;
+    -webkit-transition: all 0.3 ease;
+    transition: all 0.3 ease;
+    cursor: pointer;
+  }
+  .btn_R:hover,.btn_R:active,.btn_R:focus {
+    background: #656e80;
+  }
+ 
+  .imgT {
+
+    background-image: url("/public/images/carcel.jpg");
+    /*opacity:.6;*/
+    /*background-color: #282c34;*/
+    height: 500px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    font-family: "Roboto", sans-serif;
+    color: rgb(178, 179, 185);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;      
+  }  
