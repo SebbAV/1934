@@ -41,7 +41,7 @@ router.post('/', function (req, res) {
                 responseHelper.respond(res, 500, error);
             });
         } else {
-            responseHelper.respond(res, 200, "User already registered.", null);
+            responseHelper.respond(res, 409, "User already registered.", null);
         }
 
     }).catch(function (error) {
@@ -64,7 +64,10 @@ router.post('/login', function (req, res) {
             { password: sha1HashedPassword }]
     }
     mongodbHelper.findOne(object, "user").then(function (success) {
-        responseHelper.respond(res, 200, undefined, success);
+        if (!success)
+            responseHelper.respond(res, 404, "Not found", "Wrong email or password.");
+        else
+            responseHelper.respond(res, 200, undefined, success);
     }).catch(function (error) {
         responseHelper.respond(res, 500, error);
     });
@@ -112,7 +115,7 @@ router.put('/password_reset', function (req, res) {
     {
         password: sha1HashedPassword
     }
-    
+
     mongodbHelper.findOne(object, "user").then(function (success) {
         if (!success) {
             responseHelper.respond(res, 400, "User don't exist.");
@@ -140,7 +143,10 @@ router.get('/check_code/:code', function (req, res) {
         code: code
     }
     mongodbHelper.findOne(object, "code").then(function (success) {
-        responseHelper.respond(res, 200, undefined, success);
+        if (!success)
+            responseHelper.respond(res, 404, "Not Found", "Code does not exists.");
+        else
+            responseHelper.respond(res, 200, undefined, success);
     }).catch(function (error) {
         responseHelper.respond(res, 500, error);
     });
