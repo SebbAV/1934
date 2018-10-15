@@ -11,6 +11,7 @@ var logger = require('morgan');
 var exampleRoute = require('./routes/api/v1/example');
 var userRoute = require('./routes/api/v1/user');
 var matchRoute = require('./routes/api/v1/match');
+var scoreRoute = require('./routes/api/v1/score');
 
 var app = express();
 
@@ -28,6 +29,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/v1/', exampleRoute);
 app.use('/v1/user', userRoute);
 app.use('/v1/match', matchRoute);
+app.use('/v1/score/', scoreRoute);
 
 
 
