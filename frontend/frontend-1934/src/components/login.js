@@ -35,8 +35,9 @@ class Login extends Component {
         this.props.history.push('');
     }
     onSubmit(values){
+        this.props.history.push('/main');
         this.props.loginUser(values,() =>{
-            this.props.history.push('/');
+        
         })
     }
     render() {

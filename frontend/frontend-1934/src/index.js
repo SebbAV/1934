@@ -9,6 +9,7 @@ import Login from './components/login';
 import Register from './components/register';
 import ForgotPassword from './components/forgotPassword';
 import CodePassword from './components/codePassword';
+import Game from './components/game/game';
 import reducers from './reducers';
 
 const createStoreWithMiddleware = applyMiddleware()(createStore);
@@ -21,6 +22,7 @@ ReactDOM.render(
           <Route path="/register" component={Register} />
           <Route path="/forgot_password" component={ForgotPassword} />
           <Route path="/verifyCode" component={CodePassword}/>
+          <Route path="/main" component={Game}/>
           <Route path="/" component={Login} />
         </Switch>
       </div>
