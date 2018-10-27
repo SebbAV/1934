@@ -29,7 +29,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/v1/', exampleRoute);
 app.use('/v1/user', userRoute);
 app.use('/v1/match', matchRoute);
-app.use('/v1/score/', scoreRoute);
+app.use('/v1/score', scoreRoute);
 
 
 
