@@ -5,20 +5,10 @@ class Game extends Component {
     render() {
         return (
             
-            <div className="full-height" >
-                <div className="col-md-6">
-                <button className="full-height"></button>
-                </div>
-                <div className="col-md-6">
-                <button className=""></button>
-                </div>
-                <div className="col-md-6">
-                <button className="" ></button>
-                </div>
-                <div className="col-md-6">
-                <button className=""></button>
-                </div>
-              
+            <div class="grid-container">
+            <div id="uno" onClick="#" style={{cursor:'pointer'}} class="item1">1</div>
+            <div id="dos" onClick="#" style={{cursor:'pointer'}} class="item2">2</div>
+            <div id="tres" onClick="#" style={{cursor:'pointer'}} class="item3">3</div>  
             </div>
         )
     }
