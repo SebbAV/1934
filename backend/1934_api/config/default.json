@@ -1,0 +1,15 @@
+{
+  "port": 5555,
+  "databases": {
+    "development": {
+      "host": "localhost",
+      "port": 27017,
+      "database": "alcatraz"
+    },
+    "production": {
+      "host": "localhost",
+      "port": 27017,
+      "database": "db"
+    }
+  }
+}
