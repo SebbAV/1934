@@ -26,9 +26,7 @@ router.get('/', function (req, res) {
             }).catch(function (error) {
                 responseHelper.respond(res, 500, error);
             });
-
         });
-
     }).catch(function (error) {
         responseHelper.respond(res, 500, error);
     });

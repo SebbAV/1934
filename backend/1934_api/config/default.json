@@ -2,9 +2,10 @@
   "port": 5555,
   "databases": {
     "development": {
-      "host": "localhost",
-      "port": 27017,
-      "database": "alcatraz"
+      "host": "1934-alcatraz-xgpuf.mongodb.net/test?retryWrites=true",
+      "database": "alcatraz",
+      "username": "Joche",
+      "password": "EwzVoQPaUymLwq0g"
     },
     "production": {
       "host": "localhost",
