@@ -34,7 +34,8 @@ class CodePassword extends Component {
         const { handleSubmit } = this.props
         return (
             <div>
-                <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+                <form className="form-page" onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+                    <p align="right"><Link to="/" className="btn btn-default btn-xs">Close</Link></p>
                     <Field
                         label="Recieved code"
                         name="code"
@@ -47,9 +48,10 @@ class CodePassword extends Component {
                         label="Verify Password"
                         name="confirm-password"
                         component={this.renderField} />
-                    <button type="submit" className="btn btn-primary"> Verify Code </button>
+                    <button type="submit" className="btn_N"> Verify Code </button><br/>
+                   
                 </form>
-                <Link to="/" className="btn btn-danger">Cancel</Link>
+                
             </div>
         )
     }

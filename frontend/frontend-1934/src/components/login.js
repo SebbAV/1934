@@ -9,6 +9,7 @@ class Login extends Component {
     renderField(field) {
         return (
             <div className="form-group">
+                
                 <label>{field.label}</label>
                 <input
                     className="form-control"
@@ -34,15 +35,16 @@ class Login extends Component {
         this.props.history.push('');
     }
     onSubmit(values){
+        this.props.history.push('/main');
         this.props.loginUser(values,() =>{
-            this.props.history.push('/');
+        
         })
     }
     render() {
         const {handleSubmit} = this.props
         return (
             <div>
-                <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+                <form className="form-page"  onSubmit={handleSubmit(this.onSubmit.bind(this))}>
                     <Field
                         label="Username"
                         name="email"
@@ -51,10 +53,11 @@ class Login extends Component {
                         label="Password"
                         name="password"
                         component={this.passwordfield} />
-                    <button type="submit" className="btn btn-primary"> Login </button>
+                    <button type="submit" className="btn_N"> Login </button><br/>
+                    <p align="center"><Link to="/forgot_password"> Forgot Password? Click here </Link></p>
+                    <p align="center"><Link to="/register">Not registered? Sign up </Link></p>
                 </form>
-                <Link to="/register" className="btn btn-primary"> Sign up </Link>
-                <Link to="/forgot_password"> Forgot Password? Click here </Link>
+                
             </div>
         )
     }

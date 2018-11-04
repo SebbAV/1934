@@ -7,6 +7,11 @@ export const USER_ADD = 'user_add';
 export const USER_FORGOT_PASSWORD = 'user_forgot_password';
 export const USER_CHECK_CODE = 'user_check_code';
 export const USER_RESET_PASSWORD = 'user_reset_password';
+export const USER_GET_SCORES = 'user_get_scores';
+export const USER_POST_SCORES = 'user_post_scores'
+
+
+
 export function loginUser(values, callback) {
     console.log(values)
     const request = axios.post(`${API_URL}/v1/user/login`, values).then((response) => {
@@ -44,5 +49,22 @@ export function verifyCode(values,callback){
     return {
         type: USER_CHECK_CODE,
         payload: request
+    }
+}
+
+export function getScores(values){
+    scores = ''
+    const request = axios.get(`${API_URL}/v1/user/${scores}/${values}`)
+    return {
+        type: USER_GET_SCORES,
+        payload:request
+    }
+}
+export function postScores(values){
+    console.log(values)
+    const request = axios.post(`${API_URL}/v1/match`,values)
+    return {
+        type: USER_POST_SCORES,
+        payload:request
     }
 }
