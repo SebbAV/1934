@@ -6,7 +6,7 @@ export default function (state = {}, action) {
         case USER_GET_SCORES:
             return action.payload.data;
         case USER_POST_SCORES:
-            return action.payload.data;
+            return state;
         default:
             return state;
     }

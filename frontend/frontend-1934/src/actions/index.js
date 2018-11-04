@@ -61,8 +61,8 @@ export function getScores(values){
     }
 }
 export function postScores(values){
-    scores = ''
-    const request = axios.post(`${API_URL}/v1/user/${scores}/`,values)
+    console.log(values)
+    const request = axios.post(`${API_URL}/v1/match`,values)
     return {
         type: USER_POST_SCORES,
         payload:request

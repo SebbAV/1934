@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux';
+import {postScores} from '../../actions/index'
 
 const color = ["red", "green", "yellow", "blue"];
 const number = ["1", "2", "3", "4"];
@@ -67,7 +69,13 @@ class Game extends Component {
                 down: number[Math.floor((Math.random() * 4) + 0)] + "_" + color[Math.floor((Math.random() * 4) + 0)] + "_" + figure[Math.floor((Math.random() * 4) + 0)] + ".png"
             });
         }else{
+            let {movements} = this.state
+            let completed = true
+            let user_object_uid = 1
             alert("game over");
+            this.props.postScores(({movements,user_object_uid,completed}), ()=> {
+
+            })
         }
     }
     componentDidMount() {
@@ -95,4 +103,4 @@ class Game extends Component {
     }
 }
 
-export default Game
+export default connect(null, {postScores})(Game)
