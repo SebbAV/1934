@@ -82,24 +82,25 @@ class Game extends Component {
         this.sortDoors();
     }
     render() {
+        console.log(this.state.up)
+        if(this.state.up){
         return (
-            <div className="full-height" >
+            <div>
+            <div className="col-md-12">
+                <button className="float-right" >Log out</button>
+            </div>
                 <div className="col-md-12">
-                    <button className="full-height" id="door_up" onClick={this.selectDoor}>{this.state.up}</button>
-                </div>
-                <div className="row">
-                    <div className="col-md-6">
-                        <button className="full-height" id="door_left" onClick={this.selectDoor}>{this.state.left}</button>
-                    </div>
-                    <div className="col-md-6">
-                        <button className="full-height" id="door_right" onClick={this.selectDoor} >{this.state.right}</button>
-                    </div>
-                </div>
-                <div className="col-md-12">
-                    <button className="full-height" id="door_down" onClick={this.selectDoor}>{this.state.down}</button>
+                    <img src={require(`../../img/doors/${this.state.up}`)} id="door_up" onClick={this.selectDoor} height="450"/>
+                    <img src={require(`../../img/doors/${this.state.left}`)} id="door_left" onClick={this.selectDoor} height="450"/>
+                    <img src={require(`../../img/doors/${this.state.right}`)} id="door_right" onClick={this.selectDoor} height="450"/>
+                    <img src={require(`../../img/doors/${this.state.down}`)} id="door_down" onClick={this.selectDoor} height="450"/>
                 </div>
             </div>
         )
+        }
+        else {
+            return('Loading...')
+        }
     }
 }
 
