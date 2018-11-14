@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form'
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import {registerUser} from '../actions/index';
+import { registerUser } from '../actions/index';
+import { Button, Panel, ButtonGroup } from 'react-bootstrap'
 
 
 class Register extends Component {
@@ -30,35 +31,37 @@ class Register extends Component {
             </div>
         )
     }
-    onSubmit(values){
-        this.props.registerUser(values,() =>{
+    onSubmit(values) {
+        this.props.registerUser(values, () => {
             this.props.history.push('/');
         })
     }
     render() {
-        const {handleSubmit} = this.props
+        const { handleSubmit } = this.props
         return (
-            <form className="form-page" onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-                <p align="right"><Link to="/" className="btn btn-default btn-xs">Close</Link></p>
-                <Field
-                    label="Username"
-                    name="nick"
-                    component={this.renderField} />
-                <Field
-                    label="email"
-                    name="email"
-                    component={this.renderField} />
-                <Field
-                    label="Password"
-                    name="password"
-                    component={this.passwordfield} />
-                <Field
-                    label="Confirm password"
-                    name="pwd-confirm"
-                    component={this.passwordfield} />
-                <button type="submit" className="btn_N"> Sign up </button>
+            <Panel className="panel_full">
+                <form className="form-page" onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+                    <p align="left"><Link to="/" className="btn btn-default btn-xs">X</Link></p>
+                    <Field
+                        label="Username"
+                        name="nick"
+                        component={this.renderField} />
+                    <Field
+                        label="email"
+                        name="email"
+                        component={this.renderField} />
+                    <Field
+                        label="Password"
+                        name="password"
+                        component={this.passwordfield} />
+                    <Field
+                        label="Confirm password"
+                        name="pwd-confirm"
+                        component={this.passwordfield} />
+                    <button type="submit" className="btn_N"> Sign up </button>
 
-            </form>
+                </form>
+            </Panel>
         )
     }
 }
@@ -72,4 +75,4 @@ function validate(values) {
 export default reduxForm({
     validate,
     form: "RegisterForm"
-})(connect(null,{registerUser})(Register));
+})(connect(null, { registerUser })(Register));

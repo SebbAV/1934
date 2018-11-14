@@ -1,5 +1,5 @@
   .form-page {
-    width: 360px;
+    width: 100%;
     padding: 1% 0 0;
     margin: auto;
   }
@@ -23,17 +23,23 @@
     box-sizing: border-box;
     font-size: 14px;
   }
-  .container {
-    position: relative;
-    z-index: 1;
-    max-width: 300px;
-    margin: 0 auto;
+  .panel_full {
+    margin-top: 20%;
+    outline: 0;
+    background: #282c34 !important;
+    color: #FFFFFF;
+    width: 50%;
+    margin-left: 25%;
+    margin-right:auto;
+    border: 0;
+    padding: 15px;
   }
   .btn_N {
     font-family: "Roboto", sans-serif;
     text-transform: uppercase;
     outline: 0;
-    background: #282c34;
+    margin-bottom: 10%;
+    background:gray;
     width: 100%;
     border: 0;
     padding: 15px;
@@ -46,6 +52,7 @@
   .btn_N:hover,.btn_N:active,.btn_N:focus {
     background: #656e80;
   }
+  
   .btn_R {
     font-family: "Roboto", sans-serif;
     text-transform: uppercase;
@@ -69,7 +76,7 @@
     background-image: url("/public/images/carcel.jpg");
     /*opacity:.6;*/
     /*background-color: #282c34;*/
-    height: 500px;
+    height: 1000px;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -78,7 +85,3 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;      
   }  
-  .full-height{
-    width: 100%;
-    height: 100%;
-  }

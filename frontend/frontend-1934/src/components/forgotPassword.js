@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form'
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import {forgotPassword} from '../actions/index';
+import { forgotPassword } from '../actions/index';
+import { Button, Panel, ButtonGroup } from 'react-bootstrap'
 
 
 class ForgotPassword extends Component {
@@ -18,28 +19,30 @@ class ForgotPassword extends Component {
             </div>
         )
     }
-    signUp(){
+    signUp() {
         this.props.history.push('');
     }
-    onSubmit(values){
-        this.props.forgotPassword(values,() =>{
+    onSubmit(values) {
+        this.props.forgotPassword(values, () => {
             this.props.history.push('/verifyCode');
         })
     }
     render() {
-        const {handleSubmit} = this.props
+        const { handleSubmit } = this.props
         return (
             <div>
-                <form className="form-page" onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-                    <p align="right"><Link to="/" className="btn btn-default btn-xs">Close</Link></p>
-                    <Field
-                        label="email"
-                        name="email"
-                        component={this.renderField} />
-                    <button type="submit" className="btn_N"> Send Recovery e-mail </button><br/>
-                    
-                </form>
-                
+                <Panel className="panel_full" >
+                    <form className="form-page" onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+                    <p align="left"><Link to="/" className="btn btn-default btn-xs">X</Link></p>
+                        <Field
+                            label="E-mail"
+                            name="email"
+                            component={this.renderField} />
+                        <button type="submit" className="btn_N"> Send Recovery e-mail </button><br />
+
+                    </form>
+                </Panel>
+
             </div>
         )
     }
@@ -54,4 +57,4 @@ function validate(values) {
 export default reduxForm({
     validate,
     form: "ForgotPasswordForm"
-})(connect(null,{forgotPassword})(ForgotPassword));
+})(connect(null, { forgotPassword })(ForgotPassword));

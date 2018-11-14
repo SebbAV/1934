@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { postScores } from '../../actions/index'
+import { Button, Panel, ButtonGroup } from 'react-bootstrap'
 import Modal from 'react-modal';
 import '../../css/logo.css'
 
@@ -11,8 +12,11 @@ const customStyles = {
     content: {
         top: '50%',
         left: '50%',
+        width:'50%',
         right: 'auto',
         bottom: 'auto',
+        color:'white',
+        background:'#282c34',
         marginRight: '-50%',
         transform: 'translate(-50%, -50%)'
     },
@@ -109,26 +113,23 @@ class Game extends Component {
         console.log(this.state.up)
         if (this.state.up) {
             return (
-                <div>
+                <div className="col-md-12">
                     <Modal
                         isOpen={this.state.modalIsOpen}
                         onAfterOpen={this.afterOpenModal}
                         onRequestClose={this.closeModal}
                         style={customStyles}
-                        contentLabel="Example Modal"
-                    >
-                        <div className="col-md-12 text-center">
-                            <button onClick={this.closeModal}>Continue</button>
-                        </div>
-                        <div className="col-md-12">
-                            <button >Scores</button>
-                        </div>
-                        <div className="col-md-12">
-                            <button >Exit</button>
-                        </div>
+                        contentLabel="Example Modal">
+                        <h2>Pause</h2>
+                        <hr/>
+                        <ButtonGroup vertical block>
+                            <Button onClick={this.closeModal}>Continue</Button>
+                            <Button onClick={this.closeModal}>Scores</Button>
+                            <Button onClick={this.closeModal}>Exit</Button>
+                        </ButtonGroup>
                     </Modal>
                     <div className="col-md-12">
-                        <button className="float-right" onClick={this.openModal} >Log out</button>
+                        <Button className="float-right" onClick={this.openModal} >Log out</Button>
                     </div>
                     <div className="col-md-12">
                         <img src={require(`../../img/doors/${this.state.up}`)} id="door_up" onClick={this.selectDoor} height="450" />
