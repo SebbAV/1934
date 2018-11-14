@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { postScores } from '../../actions/index'
+
 import { Button, Panel, ButtonGroup } from 'react-bootstrap'
 import Modal from 'react-modal';
 import '../../css/logo.css'
+
 
 const color = ["red", "green", "yellow", "blue"];
 const number = ["1", "2", "3", "4"];
@@ -99,7 +101,7 @@ class Game extends Component {
         } else {
             let { movements } = this.state
             let completed = true
-            let user_object_uid = 1
+            let user_object_uid = "5bdf6ecbd712ed36e4fb67bc"
             alert("game over");
             this.props.postScores(({ movements, user_object_uid, completed }), () => {
 
@@ -130,6 +132,7 @@ class Game extends Component {
                     </Modal>
                     <div className="col-md-12">
                         <Button className="float-right" onClick={this.openModal} >Log out</Button>
+
                     </div>
                     <div className="col-md-12">
                         <img src={require(`../../img/doors/${this.state.up}`)} id="door_up" onClick={this.selectDoor} height="450" />

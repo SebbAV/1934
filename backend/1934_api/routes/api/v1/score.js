@@ -21,14 +21,14 @@ router.get('/', function (req, res) {
                 score.score = sortHelper.getHigherScore(scores);
                 data.push(score);
                 limiter++;
-                if (limiter == limit)
+                if (limiter == limit) {
+                    sortHelper.sortScores(data)
                     responseHelper.respond(res, 200, undefined, data);
+                }
             }).catch(function (error) {
                 responseHelper.respond(res, 500, error);
             });
-
         });
-
     }).catch(function (error) {
         responseHelper.respond(res, 500, error);
     });
