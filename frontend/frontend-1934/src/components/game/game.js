@@ -2,9 +2,29 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { postScores } from '../../actions/index'
 
+import { Button, Panel, ButtonGroup } from 'react-bootstrap'
+import Modal from 'react-modal';
+import '../../css/logo.css'
+
+
 const color = ["red", "green", "yellow", "blue"];
 const number = ["1", "2", "3", "4"];
 const figure = ["circle", "triangle", "square", "poli"];
+const customStyles = {
+    content: {
+        top: '50%',
+        left: '50%',
+        width:'50%',
+        right: 'auto',
+        bottom: 'auto',
+        color:'white',
+        background:'#282c34',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)'
+    },
+    overlay: { zIndex: 1000 }
+};
+Modal.setAppElement('.container')
 class Game extends Component {
     constructor(props) {
         super(props)
@@ -16,11 +36,21 @@ class Game extends Component {
                 down: "",
                 finished: false,
                 doors: [false, false, false, false],
-                movements: []
+                movements: [],
+                modalIsOpen: false
             }
+        this.openModal = this.openModal.bind(this);
+        this.closeModal = this.closeModal.bind(this);
         this.selectDoor = this.selectDoor.bind(this);
         this.sortDoors = this.sortDoors.bind(this);
     }
+    openModal() {
+        this.setState({ modalIsOpen: true });
+    }
+    closeModal() {
+        this.setState({ modalIsOpen: false });
+    }
+
     selectDoor(param) {
         switch (param.target.id) {
             case "door_up":
@@ -85,9 +115,24 @@ class Game extends Component {
         console.log(this.state.up)
         if (this.state.up) {
             return (
-                <div>
+                <div className="col-md-12">
+                    <Modal
+                        isOpen={this.state.modalIsOpen}
+                        onAfterOpen={this.afterOpenModal}
+                        onRequestClose={this.closeModal}
+                        style={customStyles}
+                        contentLabel="Example Modal">
+                        <h2>Pause</h2>
+                        <hr/>
+                        <ButtonGroup vertical block>
+                            <Button onClick={this.closeModal}>Continue</Button>
+                            <Button onClick={this.closeModal}>Scores</Button>
+                            <Button onClick={this.closeModal}>Exit</Button>
+                        </ButtonGroup>
+                    </Modal>
                     <div className="col-md-12">
-                        <button className="float-right" >Log out</button>
+                        <Button className="float-right" onClick={this.openModal} >Log out</Button>
+
                     </div>
                     <div className="col-md-12">
                         <img src={require(`../../img/doors/${this.state.up}`)} id="door_up" onClick={this.selectDoor} height="450" />

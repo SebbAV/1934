@@ -5,7 +5,7 @@
   "main": "index.js",
   "repository": "t",
   "scripts": {
-    "start": "webpack-dev-server --mode development --open",
+    "start": "webpack-dev-server --mode development --port 8000",
     "build": "webpack --mode production"
   },
   "author": "",
@@ -21,14 +21,17 @@
     "style-loader": "^0.23.1",
     "webpack": "^4.24.0",
     "webpack-cli": "^3.1.2",
-    "webpack-dev-server": "^3.1.10"
+    "webpack-dev-server": "^3.1.1"
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "babel-preset-es2015": "^6.24.1",
     "babel-preset-stage-1": "^6.1.18",
     "lodash": "^3.10.1",
     "react": "16.3.2",
+    "react-bootstrap": "^0.32.4",
     "react-dom": "16.3.2",
+    "react-modal": "^3.6.1",
     "react-redux": "5.0.7",
     "react-router-dom": "^4.2.2",
     "redux": "4.0.0",

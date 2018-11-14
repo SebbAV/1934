@@ -5,14 +5,21 @@ const htmlPlugin = new HtmlWebPackPlugin({
     filename: "./index.html"
 });
 module.exports = {
+    entry: ['./src/index.js'],
+    output: {
+        path: __dirname,
+        publicPath: '/public',
+        filename: 'bundle.js'
+    },
     module: {
+
         rules: [
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
                 use: {
                     loader: "babel-loader"
-                }
+                },
             },
             {
                 test: /\.css$/,
@@ -30,6 +37,14 @@ module.exports = {
             }
 
         ]
+    },
+    devServer: {
+        historyApiFallback: true,
+        contentBase: './',
+        watchOptions: {
+            aggregateTimeout: 300,
+            poll: 1000
+        }
     },
     plugins: [htmlPlugin]
 };
