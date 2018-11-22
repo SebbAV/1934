@@ -14,11 +14,11 @@ const customStyles = {
     content: {
         top: '50%',
         left: '50%',
-        width:'50%',
+        width: '50%',
         right: 'auto',
         bottom: 'auto',
-        color:'white',
-        background:'#282c34',
+        color: 'white',
+        background: '#282c34',
         marginRight: '-50%',
         transform: 'translate(-50%, -50%)'
     },
@@ -50,7 +50,40 @@ class Game extends Component {
     closeModal() {
         this.setState({ modalIsOpen: false });
     }
-
+    convertToInt(door) {
+        var arr_door = door.split("_");
+        arr_door[0]= parseInt(arr_door[0]);
+        arr_door[2] = arr_door[2].replace(".png", "");
+        switch (arr_door[1]) {
+            case "red":
+                arr_door[1] = 1
+                break;
+            case "green":
+                arr_door[1] = 2
+                break;
+            case "yellow":
+                arr_door[1] = 3
+                break;
+            case "blue":
+                arr_door[1] = 4
+                break;
+        }
+        switch (arr_door[2]) {
+            case "circle":
+                arr_door[2] = 1
+                break;
+            case "triangle":
+                arr_door[2] = 2
+                break;
+            case "square":
+                arr_door[2] = 3
+                break;
+            case "poli":
+                arr_door[2] = 4
+                break;
+        }
+        return arr_door;
+    }
     selectDoor(param) {
         switch (param.target.id) {
             case "door_up":
@@ -58,28 +91,29 @@ class Game extends Component {
                     this.setState({ finished: true })
                 }
                 else {
-                    this.state.movements.push(this.state.up);
+                    this.state.movements.push(this.convertToInt(this.state.up));
                 }
                 break;
             case "door_left":
                 if (this.state.doors[1] == true) {
                     this.setState({ finished: true })
                 } else {
-                    this.state.movements.push(this.state.left);
+                    this.state.movements.push(this.convertToInt(this.state.left));
                 }
                 break;
             case "door_right":
                 if (this.state.doors[2] == true) {
                     this.setState({ finished: true })
                 } else {
-                    this.state.movements.push(this.state.right);
+                    this.state.movements.push(this.convertToInt(this.state.right));
                 }
                 break;
             case "door_down":
                 if (this.state.doors[3] == true) {
                     this.setState({ finished: true })
                 } else {
-                    this.state.movements.push(this.state.down);
+                    this.convertToInt(this.state.down);
+                    this.state.movements.push(this.convertToInt(this.state.down));
                 }
                 break;
             default:
@@ -123,7 +157,7 @@ class Game extends Component {
                         style={customStyles}
                         contentLabel="Example Modal">
                         <h2>Pause</h2>
-                        <hr/>
+                        <hr />
                         <ButtonGroup vertical block>
                             <Button onClick={this.closeModal}>Continue</Button>
                             <Button onClick={this.closeModal}>Scores</Button>
