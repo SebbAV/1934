@@ -13,8 +13,11 @@ var userRoute = require('./routes/api/v1/user');
 var matchRoute = require('./routes/api/v1/match');
 var scoreRoute = require('./routes/api/v1/score');
 var aimodelRoute = require('./routes/api/v1/aimodel');
+var cors = require('cors');
 
 var app = express();
+app.use(cors());
+ 
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
