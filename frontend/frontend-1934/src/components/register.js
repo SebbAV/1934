@@ -9,7 +9,7 @@ import { Button, Panel, ButtonGroup } from 'react-bootstrap'
 class Register extends Component {
     renderField(field) {
         return (
-            <div className="form-group">
+            <div className="form-group reg-form">
                 <label>{field.label}</label>
                 <input
                     className="form-control"

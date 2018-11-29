@@ -22,7 +22,7 @@ class Login extends Component {
     }
     passwordfield(field) {
         return (
-            <div className="form-group">
+            <div className="form-group log-form">
                 <label>{field.label}</label>
                 <input
                     className="form-control"
@@ -59,7 +59,7 @@ class Login extends Component {
                                 component={this.passwordfield} />
                             <button type="submit" className="btn_N"> Login </button><br />
                             <p align="center"><Link to="/forgot_password"> Forgot Password? Click here </Link></p>
-                            <p align="center"><Link to="/register">Not registered? Sign up </Link></p>
+                            <p align="center" ><Link className="register" to="/register">Not registered? Sign up </Link></p>
                         </form>
                 </Panel>
             </div>
