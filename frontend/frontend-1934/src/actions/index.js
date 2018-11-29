@@ -9,6 +9,9 @@ export const USER_CHECK_CODE = 'user_check_code';
 export const USER_RESET_PASSWORD = 'user_reset_password';
 export const USER_GET_SCORES = 'user_get_scores';
 export const USER_POST_SCORES = 'user_post_scores'
+export const STOP_AI = 'stop_ai'
+export const INITIALIZE_AI = 'initialize_ai'
+export const SEND_TO_AI = 'send_to_ai'
 
 
 
@@ -65,6 +68,27 @@ export function postScores(values){
     const request = axios.post(`${API_URL}/v1/match`,values)
     return {
         type: USER_POST_SCORES,
+        payload:request
+    }
+}
+export function sendAI(values){
+    const request = axios.post(`${API_URL}/v1/aimodel/move`,values)
+    return {
+        type: SEND_TO_AI,
+        payload:request
+    }
+}
+export function startAI(values){
+    const request = axios.post(`${API_URL}/v1/aimodel`)
+    return {
+        type:INITIALIZE_AI,
+        payload:request
+    }
+}
+export function stopAI(values){
+    const request = axios.post(`${API_URL}/v1/aimodel/stop`)
+    return {
+        type: STOP_AI,
         payload:request
     }
 }
